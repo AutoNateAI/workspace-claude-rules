@@ -47,11 +47,11 @@ WEEK=$(date +%V)
 DAY=$(date +%d)
 
 # Create folder structure
-mkdir -p "/Users/nathan.baker/code/daily-notes/$YEAR/$MONTH/week-$WEEK/$DAY"
-mkdir -p "/Users/nathan.baker/code/daily-notes/$YEAR/$MONTH/week-$WEEK/$DAY/dev-work"
-mkdir -p "/Users/nathan.baker/code/daily-notes/$YEAR/$MONTH/week-$WEEK/$DAY/pr-reviews"
-mkdir -p "/Users/nathan.baker/code/daily-notes/$YEAR/$MONTH/week-$WEEK/$DAY/screenshots"
-mkdir -p "/Users/nathan.baker/code/daily-notes/$YEAR/$MONTH/week-$WEEK/$DAY/research"
+mkdir -p "/Users/nathan.baker/code/fetch_workspace/daily-notes/$YEAR/$MONTH/week-$WEEK/$DAY"
+mkdir -p "/Users/nathan.baker/code/fetch_workspace/daily-notes/$YEAR/$MONTH/week-$WEEK/$DAY/dev-work"
+mkdir -p "/Users/nathan.baker/code/fetch_workspace/daily-notes/$YEAR/$MONTH/week-$WEEK/$DAY/pr-reviews"
+mkdir -p "/Users/nathan.baker/code/fetch_workspace/daily-notes/$YEAR/$MONTH/week-$WEEK/$DAY/screenshots"
+mkdir -p "/Users/nathan.baker/code/fetch_workspace/daily-notes/$YEAR/$MONTH/week-$WEEK/$DAY/research"
 ```
 
 ### Step 2: Gather Staging Activity (Overnight)
@@ -60,7 +60,7 @@ mkdir -p "/Users/nathan.baker/code/daily-notes/$YEAR/$MONTH/week-$WEEK/$DAY/rese
 
 ```bash
 # Platform - staging branch activity since yesterday
-cd /Users/nathan.baker/code/platform
+cd /Users/nathan.baker/code/fetch_workspace/platform
 git fetch origin staging
 echo "=== Platform Staging Commits (Overnight) ==="
 git log origin/staging --oneline --since="yesterday 6pm" --pretty=format:"%h %s (%an)" | head -20
@@ -73,7 +73,7 @@ echo "\n=== Platform Open PRs ==="
 gh pr list --state=open --limit=20 --repo flockx-official/platform --base staging
 
 # Clients - staging branch activity since yesterday
-cd /Users/nathan.baker/code/clients
+cd /Users/nathan.baker/code/fetch_workspace/clients
 git fetch origin staging
 echo "\n=== Clients Staging Commits (Overnight) ==="
 git log origin/staging --oneline --since="yesterday 6pm" --pretty=format:"%h %s (%an)" | head -20
@@ -94,11 +94,11 @@ For each significant overnight change, identify:
 
 ```bash
 # See what areas changed in platform
-cd /Users/nathan.baker/code/platform
+cd /Users/nathan.baker/code/fetch_workspace/platform
 git diff origin/staging@{yesterday}..origin/staging --stat | tail -20
 
 # See what areas changed in clients
-cd /Users/nathan.baker/code/clients
+cd /Users/nathan.baker/code/fetch_workspace/clients
 git diff origin/staging@{yesterday}..origin/staging --stat | tail -20
 ```
 
@@ -114,15 +114,15 @@ gh pr list --author="@me" --state=open --repo flockx-official/platform
 gh pr list --author="@me" --state=open --repo flockx-official/community-web-app
 
 # My branches with uncommitted work
-cd /Users/nathan.baker/code/platform && git status --short
-cd /Users/nathan.baker/code/clients && git status --short
+cd /Users/nathan.baker/code/fetch_workspace/platform && git status --short
+cd /Users/nathan.baker/code/fetch_workspace/clients && git status --short
 ```
 
 ### Step 5: Check Yesterday's Pickup Notes
 
 ```bash
 # Find and read yesterday's pickup-tomorrow.md
-find /Users/nathan.baker/code/daily-notes -name "pickup-tomorrow.md" -mtime -2 | head -1 | xargs cat
+find /Users/nathan.baker/code/fetch_workspace/daily-notes -name "pickup-tomorrow.md" -mtime -2 | head -1 | xargs cat
 ```
 
 ### Step 6: Slack Channel Highlights (Optional)
@@ -131,6 +131,10 @@ Check key channels for overnight activity:
 - `#ao-planning` (C08CETC7YS2) - Devon communications
 - `#fetch-devs` (C08C70B48PJ) - Team discussions, PR requests
 - `#llm_issues` (C08V0EH4S7M) - Issue tracking
+- `#fetchai-ao-internal` () - Atomic Object Internal Team working on FetchAI client work internal convo
+- `#bugs` () - Reported bugs
+- `#asi-one-mobile-app` (C08C70B48PJ) - Team discussions, PR requests
+
 
 ---
 

@@ -21,8 +21,8 @@ Attach this rule when you say:
 
 | Repo | Path | GitHub |
 |------|------|--------|
-| Platform | `/Users/nathan.baker/code/platform` | `flockx-official/platform` |
-| Clients | `/Users/nathan.baker/code/clients` | `flockx-official/community-web-app` |
+| Platform | `/Users/nathan.baker/code/fetch_workspace/platform` | `flockx-official/platform` |
+| Clients | `/Users/nathan.baker/code/fetch_workspace/clients` | `flockx-official/community-web-app` |
 
 ---
 
@@ -37,12 +37,12 @@ Attach this rule when you say:
 SINCE_DATE="<LAST_MEETING_DATE>"
 
 # Platform commits
-cd /Users/nathan.baker/code/platform
+cd /Users/nathan.baker/code/fetch_workspace/platform
 echo "=== Platform Commits ==="
 git log --oneline --since="$SINCE_DATE" --author="nathan" --pretty=format:"%h %s (%ad)" --date=short
 
 # Clients commits
-cd /Users/nathan.baker/code/clients
+cd /Users/nathan.baker/code/fetch_workspace/clients
 echo "=== Clients Commits ==="
 git log --oneline --since="$SINCE_DATE" --author="nathan" --pretty=format:"%h %s (%ad)" --date=short
 ```

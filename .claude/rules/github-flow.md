@@ -17,8 +17,8 @@ Attach this rule when:
 
 | Repo | Path | GitHub | Default Branch |
 |------|------|--------|----------------|
-| Platform | `/Users/nathan.baker/code/platform` | `flockx-official/platform` | `staging` |
-| Clients | `/Users/nathan.baker/code/clients` | `flockx-official/community-web-app` | `staging` |
+| Platform | `/Users/nathan.baker/code/fetch_workspace/platform` | `flockx-official/platform` | `staging` |
+| Clients | `/Users/nathan.baker/code/fetch_workspace/clients` | `flockx-official/community-web-app` | `staging` |
 
 **Project Board:** https://github.com/orgs/flockx-official/projects/8/views/35
 
@@ -59,7 +59,7 @@ Branch: `feature/<NUMBER>-<description>`
 ### 2. Create Branch
 
 ```bash
-cd /Users/nathan.baker/code/<repo>
+cd /Users/nathan.baker/code/fetch_workspace/<repo>
 git checkout staging && git pull
 git checkout -b feature/<NUMBER>-<description>
 ```

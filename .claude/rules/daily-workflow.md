@@ -84,8 +84,8 @@ gh auth status
 source ~/.zshrc && echo $SLACK_CLI_TOKEN | head -c 10
 
 # Pull latest staging branches (where the action happens)
-cd /Users/nathan.baker/code/platform && git fetch origin staging && git log origin/staging --oneline -5
-cd /Users/nathan.baker/code/clients && git fetch origin staging && git log origin/staging --oneline -5
+cd /Users/nathan.baker/code/fetch_workspace/platform && git fetch origin staging && git log origin/staging --oneline -5
+cd /Users/nathan.baker/code/fetch_workspace/clients && git fetch origin staging && git log origin/staging --oneline -5
 ```
 
 ### Why Staging Branches?

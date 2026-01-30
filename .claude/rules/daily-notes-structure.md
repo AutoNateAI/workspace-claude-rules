@@ -265,25 +265,25 @@ screenshots/
 
 ### Base Path
 ```
-/Users/nathan.baker/code/daily-notes/
+/Users/nathan.baker/code/fetch_workspace/daily-notes/
 ```
 
 ### Today's Folder
 ```bash
 TODAY=$(date +%Y/%m/week-%V/%d)
-mkdir -p "/Users/nathan.baker/code/daily-notes/$TODAY"
+mkdir -p "/Users/nathan.baker/code/fetch_workspace/daily-notes/$TODAY"
 ```
 
 ### Finding Recent Notes
 ```bash
 # Yesterday's notes
-find /Users/nathan.baker/code/daily-notes -name "*.md" -mtime -2
+find /Users/nathan.baker/code/fetch_workspace/daily-notes -name "*.md" -mtime -2
 
 # This week's notes
-find /Users/nathan.baker/code/daily-notes -name "*.md" -mtime -7
+find /Users/nathan.baker/code/fetch_workspace/daily-notes -name "*.md" -mtime -7
 
 # Search for content
-grep -r "feature name" /Users/nathan.baker/code/daily-notes/2025/
+grep -r "feature name" /Users/nathan.baker/code/fetch_workspace/daily-notes/2025/
 ```
 
 ---
@@ -294,7 +294,7 @@ grep -r "feature name" /Users/nathan.baker/code/daily-notes/2025/
 #!/bin/bash
 # Create today's folder structure
 
-BASE="/Users/nathan.baker/code/daily-notes"
+BASE="/Users/nathan.baker/code/fetch_workspace/daily-notes"
 YEAR=$(date +%Y)
 MONTH=$(date +%m)
 WEEK=$(date +week-%V)

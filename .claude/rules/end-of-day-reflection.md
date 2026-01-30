@@ -45,7 +45,7 @@ At the end of the day, you should be able to answer:
 TODAY=$(date +%Y-%m-%d)
 
 # Platform commits today (your work)
-cd /Users/nathan.baker/code/platform
+cd /Users/nathan.baker/code/fetch_workspace/platform
 echo "=== Platform Commits Today ==="
 git log --oneline --since="today 6am" --author="nathan" --pretty=format:"%h %s"
 
@@ -53,7 +53,7 @@ git log --oneline --since="today 6am" --author="nathan" --pretty=format:"%h %s"
 git log --since="today 6am" --author="nathan" --stat --pretty=format:"%h %s" | head -50
 
 # Clients commits today (your work)
-cd /Users/nathan.baker/code/clients
+cd /Users/nathan.baker/code/fetch_workspace/clients
 echo "\n=== Clients Commits Today ==="
 git log --oneline --since="today 6am" --author="nathan" --pretty=format:"%h %s"
 
@@ -72,7 +72,7 @@ gh pr list --author="@me" --state=merged --search="merged:>=$TODAY" --repo flock
 
 Read today's session log for context:
 ```bash
-cat /Users/nathan.baker/code/daily-notes/$(date +%Y)/$(date +%m)/week-$(date +%V)/$(date +%d)/session-log.md
+cat /Users/nathan.baker/code/fetch_workspace/daily-notes/$(date +%Y)/$(date +%m)/week-$(date +%V)/$(date +%d)/session-log.md
 ```
 
 ### Step 3: Generate Reflection with Story
@@ -225,8 +225,8 @@ gh pr list --author="@me" --state=open --repo flockx-official/platform
 gh pr list --author="@me" --state=open --repo flockx-official/community-web-app
 
 # Fetch latest staging
-cd /Users/nathan.baker/code/platform && git fetch origin staging
-cd /Users/nathan.baker/code/clients && git fetch origin staging
+cd /Users/nathan.baker/code/fetch_workspace/platform && git fetch origin staging
+cd /Users/nathan.baker/code/fetch_workspace/clients && git fetch origin staging
 ```
 
 ## Where You Left Off

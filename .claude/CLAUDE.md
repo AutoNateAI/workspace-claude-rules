@@ -148,7 +148,7 @@ git log --oneline --since="yesterday" --author="nathan" --pretty=format:"%h %s (
 
 - All rules assume `gh` CLI is authenticated
 - Slack token at `$SLACK_CLI_TOKEN`
-- Daily notes path: `/Users/nathan.baker/code/daily-notes/`
+- Daily notes path: `/Users/nathan.baker/code/fetch_workspace/daily-notes/`
 - Always use mermaid diagrams for flows and architecture
 - Update GitHub cards with plans and thought processes
 - Communicate efficiently in Slack threads

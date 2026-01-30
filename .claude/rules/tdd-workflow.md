@@ -221,11 +221,11 @@ describe('FeatureComponent', () => {
 
 ```bash
 # Platform
-cd /Users/nathan.baker/code/platform
+cd /Users/nathan.baker/code/fetch_workspace/platform
 pytest app/tests/test_feature.py -v
 
 # Clients
-cd /Users/nathan.baker/code/clients
+cd /Users/nathan.baker/code/fetch_workspace/clients
 pnpm --filter fetch-llm cypress run --component --spec "cypress/component/feature/**"
 ```
 

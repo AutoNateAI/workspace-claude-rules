@@ -43,8 +43,8 @@ This workspace has TWO repos that work together:
 
 | Repo | Stack | Location |
 |------|-------|----------|
-| **platform** | Django + FastAPI + LangGraph | `/Users/nathan.baker/code/platform` |
-| **clients** | Next.js + React | `/Users/nathan.baker/code/clients` |
+| **platform** | Django + FastAPI + LangGraph | `/Users/nathan.baker/code/fetch_workspace/platform` |
+| **clients** | Next.js + React | `/Users/nathan.baker/code/fetch_workspace/clients` |
 
 **Every research must consider both sides:**
 - What API endpoints are involved?
