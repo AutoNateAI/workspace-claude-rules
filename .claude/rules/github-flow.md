@@ -213,6 +213,67 @@ gh pr review <NUMBER> --repo <REPO> --approve --body "LGTM!"
 gh pr review <NUMBER> --repo <REPO> --request-changes --body "See inline comments"
 ```
 
+#### Posting Inline Comments on Specific Lines
+
+Use `gh api` to post comments directly on specific lines of code in a PR:
+
+```bash
+# Post an inline comment on a specific line
+gh api repos/flockx-official/<REPO>/pulls/<NUMBER>/comments \
+  --input - <<'EOF'
+{
+  "body": "Your comment text here",
+  "commit_id": "<COMMIT_SHA_FROM_PR>",
+  "path": "path/to/file.tsx",
+  "line": 42
+}
+EOF
+```
+
+**Parameters:**
+- `body`: The comment text (supports markdown)
+- `commit_id`: The full SHA of the commit (find via `gh pr view <NUMBER> --json commits`)
+- `path`: Relative path to the file (as shown in PR diff)
+- `line`: Line number in the final file (the line you want to comment on)
+
+**Example - Multiple inline comments:**
+
+```bash
+cd /Users/nathan.baker/code/fetch_workspace/<repo>
+
+# Get commit SHA from PR
+COMMIT=$(gh pr view 1234 --json commits --jq '.commits[0].oid')
+
+# Comment 1: On line 210
+gh api repos/flockx-official/<REPO>/pulls/1234/comments \
+  --input - <<EOF
+{
+  "body": "⚠️ Architecture change: Friends are now user-scoped instead of twin-scoped.",
+  "commit_id": "$COMMIT",
+  "path": "apps/asi-one-native/src/components/personalization/connections/friend.tsx",
+  "line": 210
+}
+EOF
+
+# Comment 2: On line 173
+gh api repos/flockx-official/<REPO>/pulls/1234/comments \
+  --input - <<EOF
+{
+  "body": "Data migration: Old friends in PersonalizationContent won't be visible.",
+  "commit_id": "$COMMIT",
+  "path": "apps/asi-one-native/src/components/personalization/connections/friend.tsx",
+  "line": 173
+}
+EOF
+```
+
+**Notes:**
+- Comments appear inline in the PR diff view
+- Use multiple `gh api` calls for multiple inline comments
+- Each comment needs the full commit SHA
+- Line numbers must exist in the diff for the comment to post
+- Markdown formatting is supported (bold, italics, code blocks, etc.)
+
 ---
 
 ## Branch Naming
@@ -278,3 +339,5 @@ git push --force-with-lease
 5. **Post to Slack** after creating PR for visibility
 6. **Squash merge** for clean history
 7. **Devon is NOT in #fetch-devs** - GitHub only or #ao-planning
+8. **Inline comments**: Use `gh api repos/.../pulls/<N>/comments` to post comments on specific lines
+9. **Multiple inline comments**: Get commit SHA once, then post all comments with that SHA
