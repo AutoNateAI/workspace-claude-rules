@@ -61,6 +61,18 @@ gh pr create \
 ## Summary
 - <bullet points of what changed>
 
+## Previous Behavior
+<What the code did before this PR. What was the user experience or system behavior?>
+
+## Current Behavior
+<What the code does after this PR. What changed from the user's or system's perspective?>
+
+## Blast Radius
+<What areas of the codebase are affected? Which components, screens, or flows touch this code? What is NOT affected?>
+
+## Reasoning
+<Why were these changes made at this level of the codebase (e.g., component vs. hook vs. dispatcher)? Why this approach over alternatives?>
+
 ## Test plan
 - [ ] <manual test step 1>
 - [ ] <manual test step 2>
@@ -85,7 +97,9 @@ EOF
 
 ### Step 4: Post to Slack
 
-Post a one-liner to #fetch-devs with hyperlinked PR:
+Post a **one-liner** to both channels. Keep it short — no descriptions, no reviewer tags.
+
+**#fetch-devs (C08C70B48PJ)** — No @mentions, just the link:
 
 ```bash
 source ~/.zshrc && curl -s -X POST "https://slack.com/api/chat.postMessage" \
@@ -94,6 +108,18 @@ source ~/.zshrc && curl -s -X POST "https://slack.com/api/chat.postMessage" \
   -d '{
     "channel": "C08C70B48PJ",
     "text": "PR ready: <https://github.com/flockx-official/<repo>/pull/<number>|<title>>"
+  }'
+```
+
+**#asi-one-mobile-app (C0999KNTC7M)** — For mobile PRs. @mention Nick Hazekamp and Hemant Sharma:
+
+```bash
+source ~/.zshrc && curl -s -X POST "https://slack.com/api/chat.postMessage" \
+  -H "Authorization: Bearer $SLACK_CLI_TOKEN" \
+  -H "Content-type: application/json" \
+  -d '{
+    "channel": "C0999KNTC7M",
+    "text": "PR ready: <https://github.com/flockx-official/<repo>/pull/<number>|<title>> cc <@UNXP6CT6K> <@U050TLF65NU>"
   }'
 ```
 
@@ -154,6 +180,18 @@ gh pr create \
   --title "feat(asi-one-native): implement view agent in planner task details" \
   --body "## Summary
 - Wire up external link button to open agent profile in browser
+
+## Previous Behavior
+Tapping the external link icon on a planner task detail had no effect. The button was present but not wired up.
+
+## Current Behavior
+Tapping the external link icon opens the agent's profile page in the device browser using the agent's address URL.
+
+## Blast Radius
+Only affects the planner task detail screen (FindAgentsTaskDetail component). No other screens or flows are touched. The navigation utility used is shared but unchanged.
+
+## Reasoning
+The change lives in the task detail component because that's where the button and agent context already exist. No new hooks or services needed — the agent address is already available as a prop.
 
 ## Test plan
 - [ ] Tap external link icon -> browser opens to agent profile" \
