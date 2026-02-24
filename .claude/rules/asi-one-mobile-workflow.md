@@ -51,10 +51,16 @@ pnpm i && pnpm build
 # Step 5: Switch back to staging (KEEP the node_modules!)
 git checkout staging
 
-# Step 6: Restore local changes if any
+# Step 6: Regenerate API client from latest OpenAPI spec
+pnpm run orval
+
+# Step 7: Build chat package against staging code (must run after switching back)
+pnpm build:chat
+
+# Step 8: Restore local changes if any
 git stash pop
 
-# Step 7: Start dev server (do NOT run pnpm i!)
+# Step 9: Start dev server (do NOT run pnpm i!)
 cd apps/asi-one-native
 pnpm dev
 ```
@@ -78,7 +84,13 @@ pnpm i && pnpm build
 # Step 3: Switch back to feature branch
 git checkout your-feature-branch
 
-# Step 4: Start dev server (do NOT run pnpm i!)
+# Step 4: Regenerate API client from latest OpenAPI spec
+pnpm run orval
+
+# Step 5: Build chat package against feature branch code (must run after switching back)
+pnpm build:chat
+
+# Step 6: Start dev server (do NOT run pnpm i!)
 cd apps/asi-one-native
 pnpm dev
 ```
@@ -165,7 +177,9 @@ ai.asione.auth0://fetch-ai.us.auth0.com/ios/ai.asione/callback
 1. **NEVER run `pnpm i` on staging or feature branches** - Always install from `asi-one-mobile-staging`
 2. **Keep node_modules when switching branches** - The correct React comes from mobile-staging
 3. **Build native code after clean install** - Run `pnpm build` after `pnpm i`
-4. **Use `pnpm dev` not `npx expo start`** - Ensures correct environment
+4. **Always run `pnpm run orval` after switching back** - Regenerates API client types from the latest OpenAPI spec so hooks/types match the current backend
+5. **Always run `pnpm build:chat` after orval** - Rebuilds the chat package against the current branch's code (staging or feature branch), not mobile-staging's
+6. **Use `pnpm dev` not `npx expo start`** - Ensures correct environment
 
 ---
 
@@ -174,6 +188,8 @@ ai.asione.auth0://fetch-ai.us.auth0.com/ios/ai.asione/callback
 | Action | Command |
 |--------|---------|
 | Start dev server | `pnpm dev` |
+| Regenerate API client | `pnpm run orval` |
+| Build chat package | `pnpm build:chat` |
 | Build iOS | `npx expo run:ios` |
 | Build Android | `npx expo run:android` |
 | Fix dependencies | `npx expo install --fix` |
